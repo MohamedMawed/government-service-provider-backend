@@ -13,6 +13,7 @@ class Service(models.Model):
 class SubService(models.Model):
     service         = models.ForeignKey(Service, on_delete=models.CASCADE)
     name            = models.CharField(max_length=150)
+    canBeOrdered    = models.BooleanField(default=False)
     papers          = models.CharField(max_length=400 , blank=True , default="")
     actions         = models.CharField(max_length=400, blank=True , default="")
 

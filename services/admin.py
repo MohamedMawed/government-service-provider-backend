@@ -8,7 +8,7 @@ class ServiceAdmin(admin.ModelAdmin):
 
 
 class SubServiceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'service', 'name', 'papers', 'actions')
+    list_display = ('id', 'service', 'name' , 'canBeOrdered', 'papers', 'actions')
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'username', 'service', 'serviceName',

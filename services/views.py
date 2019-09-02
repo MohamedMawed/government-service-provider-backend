@@ -23,8 +23,9 @@ class SubServicesList(APIView):
     def get(self, request, pk, format=None):
         if not self.request.user.active:
             return Response({"detail": "You are not active please contact MP system admin"}, status=status.HTTP_400_BAD_REQUEST)
-        Subservices = SubService.objects.get(service = pk)
-        serializer = SubServiceSerializer(Subservices)
+        
+        subservices = SubService.objects.filter(service_id=pk)
+        serializer = SubServiceSerializer(subservices , many=True)
         return Response(serializer.data)
 
 class ParametersList(APIView):
@@ -33,6 +34,6 @@ class ParametersList(APIView):
     def get(self, request, pk, format=None):
         if not self.request.user.active:
             return Response({"detail": "You are not active please contact MP system admin"}, status=status.HTTP_400_BAD_REQUEST)
-        SubServiceParameters = SubServiceParameter.objects.get(subService = pk)
-        serializer = SubServiceSerializer(SubServiceParameters)
+        SubServiceParameters = SubServiceParameter.objects.filter(subService_id = pk)
+        serializer = SubServiceParameterSerializer(SubServiceParameters)
         return Response(serializer.data)

@@ -12,7 +12,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 class SubServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubService
-        fields = ('id', 'service', 'name', 'papers', 'actions')
+        fields = ('id', 'service', 'name', 'canBeOrdered', 'papers', 'actions')
 
 
 class OrderSerializer(serializers.ModelSerializer):

@@ -1,0 +1,25 @@
+from django.contrib import admin
+from .models import *
+from django.core.exceptions import ValidationError
+
+
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name',)
+
+
+class SubServiceAdmin(admin.ModelAdmin):
+    list_display = ('id', 'service', 'name', 'papers', 'actions')
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'username', 'service', 'serviceName',
+                  'subService', 'subServiceName', 'paymentType', 'status')
+    fields = ( 'user', 'service',
+                  'subService', 'paymentType', 'status')
+
+
+
+
+
+admin.site.register(Service, ServiceAdmin)
+admin.site.register(SubService, SubServiceAdmin)
+admin.site.register(Order , OrderAdmin)

@@ -16,6 +16,12 @@ class OrderAdmin(admin.ModelAdmin):
     fields = ( 'user', 'service',
                   'subService', 'paymentType', 'status')
 
+class SubServiceParameterAdmin(admin.ModelAdmin):
+    list_display = ('id','subService', 'paramName' ,'subServiceName', 'isRequired', 'paramType',
+                  'conditions')
+    fields = ( 'subService' , 'paramName',
+                  'isRequired', 'paramType', 'conditions')
+
 
 
 
@@ -23,3 +29,4 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(SubService, SubServiceAdmin)
 admin.site.register(Order , OrderAdmin)
+admin.site.register(SubServiceParameter , SubServiceParameterAdmin)

@@ -59,11 +59,22 @@ class Order(models.Model):
 class SubServiceParameter(models.Model):
     subService          = models.ForeignKey(SubService, on_delete=models.CASCADE , null=True , blank=False)
     subServiceName      = models.CharField(max_length=150)
-    paramName           = models.CharField(max_length=150)
+    paramName           = models.CharField(max_length=50)
     isRequired          = models.BooleanField(default=True)
-    paramType           = models.CharField(max_length=150)
+
+    TEXT        = "Text"
+    NUMBER       = "Number"
+    DATE         = "Date"
+    CITY_LIST    = "City List"
+    paymentTypes = (
+        (TEXT, "Text"),
+        (NUMBER, "Number"),
+        (DATE, "Date"),
+        (CITY_LIST, "City List")
+        )
+    paramType = models.CharField(max_length=40, choices=paymentTypes, default=TEXT)
     conditions          = models.CharField(max_length=300)
 
 
     def __str__(self):
-        return self.username
+        return self.paramName

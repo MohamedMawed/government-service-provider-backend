@@ -35,4 +35,6 @@ class SubServiceParameterSerializer(serializers.ModelSerializer):
         fields = ('id', 'subService', 'subServiceName', 'paramName', 'isRequired',
                   'paramType', 'conditions')    
     def get_subService(self , obj):
+        return obj.subService.id
+    def get_subServiceName(self , obj):
         return obj.subService.name

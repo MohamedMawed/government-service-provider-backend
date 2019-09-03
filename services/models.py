@@ -61,7 +61,7 @@ class SubServiceParameter(models.Model):
     subServiceName      = models.CharField(max_length=150)
     paramName           = models.CharField(max_length=50)
     isRequired          = models.BooleanField(default=True)
-
+    iconName            = models.CharField(max_length=50 , blank=True)
     TEXT        = "Text"
     NUMBER       = "Number"
     DATE         = "Date"

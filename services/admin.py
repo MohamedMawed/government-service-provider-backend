@@ -17,10 +17,10 @@ class OrderAdmin(admin.ModelAdmin):
                   'subService', 'paymentType', 'status')
 
 class SubServiceParameterAdmin(admin.ModelAdmin):
-    list_display = ('id','subService', 'paramName' ,'subServiceName', 'isRequired', 'paramType',
+    list_display = ('id','subService', 'paramName' ,'iconName', 'isRequired', 'paramType',
                   'conditions')
     fields = ( 'subService' , 'paramName',
-                  'isRequired', 'paramType', 'conditions')
+                  'isRequired','iconName', 'paramType', 'conditions')
 
 
 

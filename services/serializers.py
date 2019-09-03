@@ -32,7 +32,7 @@ class OrderSerializer(serializers.ModelSerializer):
 class SubServiceParameterSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubServiceParameter    
-        fields = ('id', 'subService', 'subServiceName', 'paramName', 'isRequired',
+        fields = ('id', 'subService', 'iconName', 'paramName', 'isRequired',
                   'paramType', 'conditions')    
     def get_subService(self , obj):
         return obj.subService.id

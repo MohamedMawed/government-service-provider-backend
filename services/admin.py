@@ -11,10 +11,10 @@ class SubServiceAdmin(admin.ModelAdmin):
     list_display = ('id', 'service', 'name' , 'canBeOrdered', 'papers', 'actions')
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'username', 'service', 'serviceName',
-                  'subService', 'subServiceName', 'paymentType', 'status')
+    list_display = ('id', 'user', 'service',
+                  'subService', 'paymentType', 'status' , 'requiredFieldsAnswers')
     fields = ( 'user', 'service',
-                  'subService', 'paymentType', 'status')
+                  'subService', 'paymentType', 'status' , 'requiredFieldsAnswers')
 
 class SubServiceParameterAdmin(admin.ModelAdmin):
     list_display = ('id','subService', 'paramName' ,'iconName', 'isRequired', 'paramType',

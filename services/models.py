@@ -14,8 +14,8 @@ class SubService(models.Model):
     service         = models.ForeignKey(Service, on_delete=models.CASCADE)
     name            = models.CharField(max_length=150)
     canBeOrdered    = models.BooleanField(default=False)
-    papers          = models.CharField(max_length=400 , blank=True , default="")
-    actions         = models.CharField(max_length=400, blank=True , default="")
+    papers          = models.TextField( blank=True , default="")
+    actions         = models.TextField( blank=True , default="")
 
     def __str__(self):
         return self.name
@@ -47,7 +47,7 @@ class Order(models.Model):
     username            = models.CharField(max_length=20)
     service             = models.ForeignKey(Service, on_delete=models.SET_NULL , null=True , blank=False)
     serviceName         = models.CharField(max_length=150)
-    requiredFieldsAnswers         = models.CharField(max_length=300 , blank=True)
+    requiredFieldsAnswers         = models.TextField(blank=True)
     subService          = models.ForeignKey(SubService, on_delete=models.SET_NULL , null=True , blank=False)
     subServiceName      = models.CharField(max_length=150)
     paymentType         = models.CharField(max_length=20, choices=paymentTypes, default=CASH)
@@ -74,7 +74,7 @@ class SubServiceParameter(models.Model):
         (CITY_LIST, "City List")
         )
     paramType = models.CharField(max_length=40, choices=paymentTypes, default=TEXT)
-    conditions          = models.CharField(max_length=300)
+    conditions          = models.TextField(blank=True)
 
 
     def __str__(self):

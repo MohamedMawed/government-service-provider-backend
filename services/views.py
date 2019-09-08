@@ -37,7 +37,7 @@ class ServiceList(generics.ListAPIView):
         if geha:
             queryset = queryset.filter(geha_id_id=geha)
         if office:
-            queryset = queryset.filter(office_id_id=office)
+            queryset = queryset.filter(off_id_id=office)
 
         return queryset
 

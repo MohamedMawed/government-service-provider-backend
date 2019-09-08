@@ -49,10 +49,8 @@ class ParametersList(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, pk, format=None):
-        if not self.request.user.active:
-            return Response({"detail": "You are not active please contact MP system admin"}, status=status.HTTP_400_BAD_REQUEST)
-        subServiceParameters = SubServiceParameter.objects.filter(subService_id = pk)
-        serializer = SubServiceParameterSerializer(subServiceParameters , many=True)
+        subServiceParameters = ServiceParameter.objects.filter(srv_id = pk)
+        serializer = ServiceParameterSerializer(subServiceParameters , many=True)
         return Response(serializer.data)
 
 

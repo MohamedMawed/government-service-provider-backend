@@ -11,22 +11,39 @@ from rest_framework import status
 # Create your views here.
 
 
-class ServiceList(generics.ListAPIView):
-    queryset = Service.objects.all()
-    serializer_class = ServiceSerializer
+class GehaList(generics.ListAPIView):
+    queryset = Geha.objects.all()
+    serializer_class = GehaSerializer
     permission_classes = (IsAuthenticated,) 
 
 
-class SubServicesList(APIView):
+class OfficeList(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, pk, format=None):
-        if not self.request.user.active:
-            return Response({"detail": "You are not active please contact MP system admin"}, status=status.HTTP_400_BAD_REQUEST)
-        
-        subservices = SubService.objects.filter(service_id=pk)
-        serializer = SubServiceSerializer(subservices , many=True)
+        offices = Office.objects.filter(geha_id_id = pk)
+        serializer = OfficeSerializer(offices , many=True)
         return Response(serializer.data)
+
+
+class ServiceList(generics.ListAPIView):
+    serializer_class = ServiceSerializer
+    permission_classes = (IsAuthenticated,) 
+    def get_queryset(self):
+        queryset = Service.objects.all()
+        geha = self.request.query_params.get('geha')
+        office = self.request.query_params.get('office')
+
+        if geha:
+            queryset = queryset.filter(geha_id_id=geha)
+        elif office:
+            office = queryset.filter(office_id_id=office)
+
+        return queryset
+
+
+
+
 
 class ParametersList(APIView):
     permission_classes = (IsAuthenticated,)

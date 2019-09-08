@@ -26,7 +26,7 @@ class Office(models.Model):
     off_id = models.AutoField(primary_key=True)
     off_name = models.CharField(max_length=150)
     off_icon = models.ImageField(
-        upload_to=upload_Office_Image, max_length=None)
+        upload_to=upload_Office_Image)
 
     def __str__(self):
         return self.off_name
@@ -42,7 +42,7 @@ class Service(models.Model):
     actions = models.TextField(blank=True, default="")
 
     def __str__(self):
-        return self.name
+        return self.srv_name
 
 
 class Order(models.Model):

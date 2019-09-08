@@ -22,7 +22,7 @@ class OrderAdmin(admin.ModelAdmin):
 class ServiceParameterAdmin(admin.ModelAdmin):
     list_display = ('parm_id','srv_id', 'parm_name' ,'is_rquired', 'parm_icon_name', 'param_type',
                   'conditions')
-    fields = ('parm_id','srv_id', 'parm_name' ,'is_rquired', 'parm_icon_name', 'param_type',
+    fields = ('srv_id', 'parm_name' ,'is_rquired', 'parm_icon_name', 'param_type',
                   'conditions' )
 
 class ServiceParameterAnswerAdmin(admin.ModelAdmin):

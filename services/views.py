@@ -36,8 +36,8 @@ class ServiceList(generics.ListAPIView):
 
         if geha:
             queryset = queryset.filter(geha_id_id=geha)
-        elif office:
-            office = queryset.filter(office_id_id=office)
+        if office:
+            queryset = queryset.filter(office_id_id=office)
 
         return queryset
 
@@ -48,10 +48,13 @@ class ServiceList(generics.ListAPIView):
 class ParametersList(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request, pk, format=None):
-        subServiceParameters = ServiceParameter.objects.filter(srv_id = pk)
+    def get(self, request, format=None):
+        subServiceParameters = ServiceParameter.objects.filter(srv_id = self.request.query_params.get('service'))
         serializer = ServiceParameterSerializer(subServiceParameters , many=True)
-        return Response(serializer.data)
+
+        delivaryPlaces = DelivaryPlaces.objects.filter(geha_id = self.request.query_params.get('geha'))
+        serializer1 = DelivaryPlacesSerializer(delivaryPlaces , many=True)
+        return Response({"parameters" : serializer.data , "deliveryPlaces" :serializer1.data })
 
 
 class CreateOrder(APIView):

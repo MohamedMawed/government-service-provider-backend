@@ -9,7 +9,7 @@ from accounts.models import User
 
 class CustomUserAdmin(UserAdmin):
     add_form = UserCreationForm
-    list_display = ('username', 'email', 'full_name','address','government')
+    list_display = ('username', 'email', 'full_name','lat','lng','national_id','postal_code')
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
@@ -40,7 +40,7 @@ class CustomUserAdmin(UserAdmin):
                                 'fields': ('username', 'password', 'password_unhashed')
                             })
             fieldsets[1] = ('Personal Information', {
-                'fields': ('full_name', 'email','address','government'),
+                'fields': ('full_name', 'email','lat','lng','national_id','postal_code'),
             })
             fieldsets[2] = ('Permissions', {
                 'fields': ('active',),
@@ -51,7 +51,7 @@ class CustomUserAdmin(UserAdmin):
         else:
             fieldsets[0] = ('User Credentials',
                             {
-                                'fields': ('username', 'password1', 'password2', 'email', 'full_name','address','government')
+                                'fields': ('username', 'password1', 'password2', 'email', 'full_name','lat','lng','national_id','postal_code')
                             })
             del fieldsets[1:4]
             # fieldsets[1] = []
@@ -68,7 +68,7 @@ class CustomUserAdmin(UserAdmin):
 UserAdmin.add_fieldsets = (
     (None, {
         'classes': ('wide',),
-        'fields': ('username', 'email', 'password1', 'password2', 'full_name', 'address','government'),
+        'fields': ('username', 'email', 'password1', 'password2', 'full_name','lat','lng','national_id','postal_code'),
     }),
 
 )

@@ -47,7 +47,7 @@ class Signup(APIView):
                 user.password_unhashed = request.data['password']
                 user.save()
                 token = generate_token(user)
-                return Response({"token": token, "id": user.id}, status=status.HTTP_201_CREATED)
+                return Response({"token": token, "id": user.user_id}, status=status.HTTP_201_CREATED)
             return Response({"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 

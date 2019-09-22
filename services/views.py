@@ -22,7 +22,13 @@ class OfficeList(APIView):
 
     def get(self, request, pk, format=None):
         offices = Office.objects.filter(geha_id_id = pk)
+        # for office in offices:
+        #     count = Service.objects.filter(off_id_id = office.off_id)
+        #     office.count = count
         serializer = OfficeSerializer(offices , many=True)
+        for office in serializer.data:
+            count = Service.objects.filter(off_id_id = office['off_id'])
+            office['count'] = len(count)
         return Response(serializer.data)
 
 

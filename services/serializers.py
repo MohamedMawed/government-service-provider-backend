@@ -2,28 +2,28 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import *
 
-class GehaSerializer(serializers.ModelSerializer):
+""" class GehaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Geha
-        fields = ('geha_id', 'geha_name', 'geha_icon')
+        fields = ('geha_id', 'geha_name', 'geha_icon') """
 
 class OfficeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Office
-        fields = ('geha_id', 'off_id', 'off_name', 'off_icon')
+        fields = ( 'off_id', 'off_name', 'off_icon')
 
 
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
-        fields = ('geha_id', 'srv_id', 'off_id', 'srv_name',
+        fields = ( 'srv_id', 'off_id', 'srv_name',
                   'canBeOrdered', 'papers', 'actions')
 
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('ord_id', 'user_id', 'srv_id', 'off_id', 'geha_id'
+        fields = ('ord_id', 'user_id', 'srv_id', 'off_id', 
                   'ord_date', 'ord_payment', 'status')
 
     def get_user_id(self , obj):
@@ -56,7 +56,7 @@ class ServiceParameterAnswerSerializer(serializers.ModelSerializer):
 class DelivaryPlacesSerializer(serializers.ModelSerializer):
     class Meta:
         model = DelivaryPlaces    
-        fields = ('place_id', 'geha_id', 'place_name')    
+        fields = ('place_id', 'off_id', 'place_name')    
 
     def get_srv_id(self , obj):
         return obj.place_name

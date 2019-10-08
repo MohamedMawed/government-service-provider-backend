@@ -11,17 +11,17 @@ from rest_framework import status
 # Create your views here.
 
 
-class GehaList(generics.ListAPIView):
+""" class GehaList(generics.ListAPIView):
     queryset = Geha.objects.all()
     serializer_class = GehaSerializer
-    permission_classes = (IsAuthenticated,) 
+    permission_classes = (IsAuthenticated,)  """
 
 
 class OfficeList(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, pk, format=None):
-        offices = Office.objects.filter(geha_id_id = pk)
+        offices = Office.objects.filter(parent_id = pk)
         # for office in offices:
         #     count = Service.objects.filter(off_id_id = office.off_id)
         #     office.count = count
@@ -37,11 +37,11 @@ class ServiceList(generics.ListAPIView):
     permission_classes = (IsAuthenticated,) 
     def get_queryset(self):
         queryset = Service.objects.all()
-        geha = self.request.query_params.get('geha')
+        # geha = self.request.query_params.get('geha')
         office = self.request.query_params.get('office')
 
-        if geha:
-            queryset = queryset.filter(geha_id_id=geha)
+        # if geha:
+        #     queryset = queryset.filter(geha_id_id=geha)
         if office:
             queryset = queryset.filter(off_id_id=office)
 
@@ -58,7 +58,7 @@ class ParametersList(APIView):
         subServiceParameters = ServiceParameter.objects.filter(srv_id = self.request.query_params.get('service'))
         serializer = ServiceParameterSerializer(subServiceParameters , many=True)
 
-        delivaryPlaces = DelivaryPlaces.objects.filter(geha_id = self.request.query_params.get('geha'))
+        delivaryPlaces = DelivaryPlaces.objects.filter(off_id = self.request.query_params.get('off'))
         serializer1 = DelivaryPlacesSerializer(delivaryPlaces , many=True)
         return Response({"parameters" : serializer.data , "deliveryPlaces" :serializer1.data })
 

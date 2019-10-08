@@ -12,28 +12,29 @@ def upload_Office_Image(instance, filename):
     return "office/{filename}".format(filename=filename)
 
 
-class Geha(models.Model):
+""" class Geha(models.Model):
     geha_id = models.AutoField(primary_key=True)
     geha_name = models.CharField(max_length=50)
     geha_icon = models.ImageField(upload_to=upload_Geha_Image)
 
     def __str__(self):
-        return self.geha_name
+        return self.geha_name """
 
 
 class Office(models.Model):
-    geha_id = models.ForeignKey(Geha, on_delete=models.CASCADE)
+    # geha_id = models.ForeignKey(Geha, on_delete=models.CASCADE)
     off_id = models.AutoField(primary_key=True)
     off_name = models.CharField(max_length=150)
     off_icon = models.ImageField(
         upload_to=upload_Office_Image)
+    parent_id = models.ForeignKey('self',blank=True, null=True ,related_name='children')
 
     def __str__(self):
-        return self.off_name
+        return str(self.off_id)
 
 
 class Service(models.Model):
-    geha_id = models.ForeignKey(Geha, on_delete=models.CASCADE)
+    # geha_id = models.ForeignKey(Geha, on_delete=models.CASCADE)
     off_id = models.ForeignKey(Office, on_delete=models.CASCADE)
     srv_id = models.AutoField(primary_key=True)
     srv_name = models.CharField(max_length=150)
@@ -67,7 +68,7 @@ class Order(models.Model):
     paymentTypes = (
         (CASH, "cash on delivery"),
         (VISA, "visa card"))
-    geha_id = models.ForeignKey(Geha, on_delete=models.CASCADE)
+    # geha_id = models.ForeignKey(Geha, on_delete=models.CASCADE)
     ord_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, blank=False)
@@ -124,8 +125,8 @@ class ServiceParameterAnswer(models.Model):
 
 class DelivaryPlaces(models.Model):
     place_id = models.AutoField(primary_key=True)
-    geha_id = models.ForeignKey(
-        Geha, on_delete=models.CASCADE, null=True, blank=False)
+    off_id = models.ForeignKey(
+        Office, on_delete=models.CASCADE, null=True, blank=False)
     place_name = models.CharField(max_length=100)
     def __str__(self):
         return self.place_name

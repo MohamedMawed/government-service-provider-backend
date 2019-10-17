@@ -21,7 +21,11 @@ class OfficeList(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, pk, format=None):
-        offices = Office.objects.filter(parent_id = pk)
+        offices = []
+        if pk is '0':
+            offices = Office.objects.filter(parent_id__isnull = True)
+        else:
+            offices = Office.objects.filter(parent_id = pk)
         # for office in offices:
         #     count = Service.objects.filter(off_id_id = office.off_id)
         #     office.count = count

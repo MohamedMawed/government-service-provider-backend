@@ -10,7 +10,7 @@ from .models import *
 class OfficeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Office
-        fields = ( 'off_id', 'off_name', 'off_icon')
+        fields = ( 'off_id', 'off_name', 'off_icon' , 'parent_id')
 
 
 class ServiceSerializer(serializers.ModelSerializer):

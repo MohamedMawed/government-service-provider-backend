@@ -11,6 +11,15 @@ from rest_framework import status
 # Create your views here.
 
 
+
+
+class OfficeRUD(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Office.objects.all()
+    serializer_class = OfficeSerializer
+    # lookup_url_kwarg = 'off_id'
+    permission_classes = (IsAuthenticated,) 
+
+
 class GehaAllList(generics.ListAPIView):
     queryset = Office.objects.all()
     serializer_class = OfficeSerializer

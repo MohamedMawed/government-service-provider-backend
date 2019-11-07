@@ -11,10 +11,10 @@ from rest_framework import status
 # Create your views here.
 
 
-""" class GehaList(generics.ListAPIView):
-    queryset = Geha.objects.all()
-    serializer_class = GehaSerializer
-    permission_classes = (IsAuthenticated,)  """
+class GehaAllList(generics.ListAPIView):
+    queryset = Office.objects.all()
+    serializer_class = OfficeSerializer
+    permission_classes = (IsAuthenticated,) 
 
 
 class OfficeList(APIView):

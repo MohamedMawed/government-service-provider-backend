@@ -58,6 +58,14 @@ class DelivaryPlacesSerializer(serializers.ModelSerializer):
         model = DelivaryPlaces    
         fields = ('place_id', 'off_id', 'place_name')    
 
-    def get_srv_id(self , obj):
+    def get_place_id(self , obj):
         return obj.place_name
+
+class ServiceAddonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceAddon    
+        fields = ('addon_id', 'srv_id', 'addon_name' , 'is_rquired' , 'file')
+
+    def get_addon_id(self , obj):
+        return obj.addon_id
 

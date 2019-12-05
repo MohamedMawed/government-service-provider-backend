@@ -33,6 +33,10 @@ class DelivaryPlacesAdmin(admin.ModelAdmin):
     list_display = ('place_id','off_id', 'place_name')
     
 
+class ServiceAddonAdmin(admin.ModelAdmin):
+    list_display = ('addon_id', 'srv_id', 'addon_name' , 'is_rquired' , 'file')
+    
+
 
 
 
@@ -43,3 +47,4 @@ admin.site.register(Order , OrderAdmin)
 admin.site.register(ServiceParameter , ServiceParameterAdmin)
 admin.site.register(ServiceParameterAnswer , ServiceParameterAnswerAdmin)
 admin.site.register(DelivaryPlaces , DelivaryPlacesAdmin)
+admin.site.register(ServiceAddon , ServiceAddonAdmin)

@@ -26,7 +26,7 @@ class ServiceParameterAdmin(admin.ModelAdmin):
                   'conditions' )
 
 class ServiceParameterAnswerAdmin(admin.ModelAdmin):
-    list_display = ('ans_id','ord_id', 'parm_id' ,'parm_name')
+    list_display = ('ans_id','ord_id', 'parm_id' ,'parm_answer')
 
 
 class DelivaryPlacesAdmin(admin.ModelAdmin):
@@ -34,7 +34,10 @@ class DelivaryPlacesAdmin(admin.ModelAdmin):
     
 
 class ServiceAddonAdmin(admin.ModelAdmin):
-    list_display = ('addon_id', 'srv_id', 'addon_name' , 'is_rquired' , 'file')
+    list_display = ('addon_id', 'srv_id', 'addon_name' , 'is_rquired')
+
+class ServiceAddonAnswerAdmin(admin.ModelAdmin):
+    list_display = ('srv_addon_answer_id','ord_id', 'addon_id', 'file')
     
 
 
@@ -48,3 +51,4 @@ admin.site.register(ServiceParameter , ServiceParameterAdmin)
 admin.site.register(ServiceParameterAnswer , ServiceParameterAnswerAdmin)
 admin.site.register(DelivaryPlaces , DelivaryPlacesAdmin)
 admin.site.register(ServiceAddon , ServiceAddonAdmin)
+admin.site.register(ServiceAddonAnswer , ServiceAddonAnswerAdmin)

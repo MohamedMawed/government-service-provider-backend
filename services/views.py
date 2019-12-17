@@ -89,6 +89,22 @@ class ServiceList(generics.ListAPIView):
         return queryset
 
 
+class ServiceAddonList(generics.ListAPIView):
+    serializer_class = ServiceAddonSerializer
+    permission_classes = (IsAuthenticated,) 
+    def get_queryset(self):
+        queryset = ServiceAddon.objects.all()
+        # geha = self.request.query_params.get('geha')
+        service = self.request.query_params.get('service')
+
+        # if geha:
+        #     queryset = queryset.filter(geha_id_id=geha)
+        if service:
+            queryset = queryset.filter(srv_id_id=service)
+
+        return queryset
+
+
 
 
 
@@ -99,7 +115,7 @@ class ParametersList(APIView):
         subServiceParameters = ServiceParameter.objects.filter(srv_id = self.request.query_params.get('service'))
         serializer = ServiceParameterSerializer(subServiceParameters , many=True)
 
-        delivaryPlaces = DelivaryPlaces.objects.filter(off_id = self.request.query_params.get('off'))
+        delivaryPlaces = DelivaryPlaces.objects.filter(off_id = self.request.query_params.get('geha'))
         serializer1 = DelivaryPlacesSerializer(delivaryPlaces , many=True)
         return Response({"parameters" : serializer.data , "deliveryPlaces" :serializer1.data })
 

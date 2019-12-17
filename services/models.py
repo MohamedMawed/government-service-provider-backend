@@ -121,11 +121,23 @@ class ServiceAddon(models.Model):
         Service, on_delete=models.CASCADE, null=True, blank=False)
     addon_name = models.CharField(max_length=50)
     is_rquired = models.BooleanField(default=True)
-    file = models.ImageField(
-        upload_to=upload_Addon_Image)
 
     def __str__(self):
         return self.addon_name
+
+
+class ServiceAddonAnswer(models.Model):
+    srv_addon_answer_id = models.AutoField(primary_key=True)
+    ord_id = models.ForeignKey(
+        Order, on_delete=models.CASCADE, null=True, blank=False)
+    addon_id = models.ForeignKey(
+        ServiceAddon, on_delete=models.CASCADE, null=True, blank=False)
+    file = models.ImageField(
+        upload_to=upload_Addon_Image)
+    def __str__(self):
+        return self.addon_id.addon_name
+
+
 
 
 
@@ -135,9 +147,9 @@ class ServiceParameterAnswer(models.Model):
         ServiceParameter, on_delete=models.CASCADE, null=True, blank=False)
     parm_id = models.ForeignKey(
         Service, on_delete=models.CASCADE, null=True, blank=False)
-    parm_name = models.CharField(max_length=50)
+    parm_answer = models.CharField(max_length=50)
     def __str__(self):
-        return self.parm_name
+        return self.parm_answer
 
 
 class DelivaryPlaces(models.Model):

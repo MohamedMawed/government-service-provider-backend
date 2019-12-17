@@ -12,6 +12,10 @@ def upload_Office_Image(instance, filename):
     return "office/{filename}".format(filename=filename)
 
 
+def upload_Addon_Image(instance, filename):
+    return "office/{filename}".format(filename=filename)
+
+
 """ class Geha(models.Model):
     geha_id = models.AutoField(primary_key=True)
     geha_name = models.CharField(max_length=50)
@@ -109,6 +113,19 @@ class ServiceParameter(models.Model):
 
     def __str__(self):
         return self.parm_name
+
+
+class ServiceAddon(models.Model):
+    addon_id = models.AutoField(primary_key=True)
+    srv_id = models.ForeignKey(
+        Service, on_delete=models.CASCADE, null=True, blank=False)
+    addon_name = models.CharField(max_length=50)
+    is_rquired = models.BooleanField(default=True)
+    file = models.ImageField(
+        upload_to=upload_Addon_Image)
+
+    def __str__(self):
+        return self.addon_name
 
 
 

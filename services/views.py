@@ -11,10 +11,47 @@ from rest_framework import status
 # Create your views here.
 
 
-""" class GehaList(generics.ListAPIView):
-    queryset = Geha.objects.all()
-    serializer_class = GehaSerializer
-    permission_classes = (IsAuthenticated,)  """
+class ServiceRUD(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
+    # lookup_url_kwarg = 'off_id'
+    permission_classes = (IsAuthenticated,) 
+
+
+class ServiceAddonRUD(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ServiceAddon.objects.all()
+    serializer_class = ServiceAddonSerializer
+    # lookup_url_kwarg = 'off_id'
+    permission_classes = (IsAuthenticated,) 
+
+
+class OfficeRUD(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Office.objects.all()
+    serializer_class = OfficeSerializer
+    # lookup_url_kwarg = 'off_id'
+    permission_classes = (IsAuthenticated,) 
+
+
+class GehaAllList(generics.ListAPIView):
+    queryset = Office.objects.all()
+    serializer_class = OfficeSerializer
+    permission_classes = (IsAuthenticated,) 
+
+class CreateService(generics.CreateAPIView):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
+    permission_classes = (IsAuthenticated,) 
+
+class CreateServiceAddon(generics.CreateAPIView):
+    queryset = ServiceAddon.objects.all()
+    serializer_class = ServiceAddonSerializer
+    permission_classes = (IsAuthenticated,) 
+
+
+class CreateOffice(generics.CreateAPIView):
+    queryset = Office.objects.all()
+    serializer_class = OfficeSerializer
+    permission_classes = (IsAuthenticated,) 
 
 
 class OfficeList(APIView):

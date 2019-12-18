@@ -52,6 +52,8 @@ class Service(models.Model):
 
 class Order(models.Model):
     RECIVED = "recived"
+    UNDERREVIEW = "under review"
+    REJECTED = "rejected"
     PAID = "paid"
     PROCESSING = "processing"
     SENDTODELIVARY = "send to delivary"
@@ -60,6 +62,8 @@ class Order(models.Model):
     FAILED = "failed"
     orderStatuses = (
         (RECIVED, "recived"),
+        (UNDERREVIEW, "under review"),
+        (REJECTED, "rejected"),
         (PAID, "paid"),
         (PROCESSING, "processing"),
         (SENDTODELIVARY, "sendToDelivary"),

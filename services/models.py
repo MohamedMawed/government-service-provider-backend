@@ -91,7 +91,7 @@ class Order(models.Model):
         max_length=20, choices=orderStatuses, default=RECIVED)
 
     def __str__(self):
-        return str(self.user_id.full_name)
+        return str(self.status)
 
 
 class ServiceParameter(models.Model):

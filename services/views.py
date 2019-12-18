@@ -128,7 +128,7 @@ class CreateOrder(APIView):
         context = dict()
         if not self.request.user.active:
             return Response({"detail": "You are not active please contact MP system admin"}, status=status.HTTP_400_BAD_REQUEST)
-        request.data['user'] = user.id
+        request.data['user'] = user.user_id
         serializer = OrderSerializer(
             data=request.data, partial=True)
         if not serializer.is_valid():
